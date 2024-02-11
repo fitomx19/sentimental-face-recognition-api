@@ -10,6 +10,7 @@ data_dir = './data'
 
 output = []
 for emotion_indx, emotion in enumerate(sorted(os.listdir(data_dir))):
+    #print(emotion)
     for image_path_ in os.listdir(os.path.join(data_dir, emotion)):
         image_path = os.path.join(data_dir, emotion, image_path_)
 

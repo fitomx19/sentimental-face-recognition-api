@@ -5,12 +5,12 @@ import cv2
 from utils import get_face_landmarks
 
 
-emotions = ['HAPPY', 'SAD', 'SURPRISED']
+emotions = ['cansado', 'contento', 'enojado']
 
 with open('./model', 'rb') as f:
     model = pickle.load(f)
 
-cap = cv2.VideoCapture(2)
+cap = cv2.VideoCapture(0)
 
 ret, frame = cap.read()
 
@@ -18,7 +18,7 @@ while ret:
     ret, frame = cap.read()
 
     face_landmarks = get_face_landmarks(frame, draw=True, static_image_mode=False)
-
+    print(face_landmarks)
     output = model.predict([face_landmarks])
 
     cv2.putText(frame,
