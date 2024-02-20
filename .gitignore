@@ -1,5 +1,4 @@
 /app/core_pipeline/data
-/app/core_pipeline/data.txt
-/app/core_pipeline/model
+/app/core_pipeline/data.txt 
 *.pyc
 *.pynb
