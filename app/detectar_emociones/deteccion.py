@@ -24,7 +24,7 @@ def calcular_nivel_estres(emotions):
 def clasificar_estres_version_2(imagen):
     # Analizar la imagen para detectar emociones
     print("Analizando imagen...")
-    print(imagen)
+    #print(imagen)
 
     resultados = DeepFace.analyze(imagen, actions=['emotion'])
     
