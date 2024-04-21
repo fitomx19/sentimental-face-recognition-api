@@ -3,7 +3,7 @@ import numpy as np
 from flask import Flask, jsonify, request
 
 from app.routes import routes  # Importa el Blueprint
-from app.controllers.controller import cargar_imagenes  # Importa el controlador
+from app.controllers.controller import cargar_imagenes, cargar_imagenes_deepface  # Importa el controlador
 
 
 @routes.route('/')
@@ -23,3 +23,11 @@ def cargar_imagen_desde_archivo(archivo):
     imagen = Image.open(archivo)
     imagen_np = np.array(imagen)
     return imagen_np
+
+@routes.route('/analizar_deepface', methods=['POST'])
+async def analyze_image_with_deepface():
+    # Analiza la imagen y devuelve el resultado
+    imagen = request.files['imagen']
+    imagen_np =  cargar_imagen_desde_archivo(imagen)
+    respuesta = cargar_imagenes_deepface(imagen_np)
+    return respuesta
