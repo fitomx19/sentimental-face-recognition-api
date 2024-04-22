@@ -6,3 +6,5 @@ numpy==1.26.3
 gunicorn
 deepface
 flask[async]
+tf-keras
+flask_cors
