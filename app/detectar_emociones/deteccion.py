@@ -52,27 +52,28 @@ def sumar_emociones(emotions):
 
 def clasificar_estres_version_2(imagen):
     # Analizar la imagen para detectar emociones
-    print("Analizando imagen...")
-    #print(imagen)
-
-    resultados = DeepFace.analyze(imagen, actions=['emotion'])
-    emocion_predominante = max(resultados[0]['emotion'], key=resultados[0]['emotion'].get)
-    # Obtener todas las emociones detectadas con sus coeficientes
-    emociones = resultados[0]['emotion']
-
-    #sumar todas las emociones
-    total_emociones = sumar_emociones(emociones)
-
-    # Calcular el nivel de estrés basado en todas las emociones detectadas
-    promedio_coeficientes = calcular_nivel_estres(emociones)
-    #clasificar el nivel de estrés en función del nivel de estrés
-    
-    nivel_estres = clasificar_estres(emociones)
+    try:
+        resultados = DeepFace.analyze(imagen, actions=['emotion'])
+        emocion_predominante = max(resultados[0]['emotion'], key=resultados[0]['emotion'].get)
+        # Obtener todas las emociones detectadas con sus coeficientes
+        emociones = resultados[0]['emotion']
+        #sumar todas las emociones
+        total_emociones = sumar_emociones(emociones)
+        # Calcular el nivel de estrés basado en todas las emociones detectadas
+        promedio_coeficientes = calcular_nivel_estres(emociones)
+        #clasificar el nivel de estrés en función del nivel de estrés
+        nivel_estres = clasificar_estres(emociones)
+        return nivel_estres,promedio_coeficientes,emocion_predominante, emociones,total_emociones
+    except Exception as e:
+        print("Error al analizar la imagen:", e)
+        nivel_estres = "No se pudo analizar la imagen"
+        promedio_coeficientes = 0
+        emocion_predominante = "neutral"
+        emociones = {}
+        total_emociones = 0
+        return nivel_estres,promedio_coeficientes,emocion_predominante, emociones,total_emociones
      
     
-    
-    
-    return nivel_estres,promedio_coeficientes,emocion_predominante, emociones,total_emociones
 
 
 def clasificar_estres_version_3(imagen):
